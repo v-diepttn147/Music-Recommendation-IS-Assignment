@@ -119,6 +119,53 @@
   body {
     /* Margin bottom by footer height */
     margin-bottom: 0px;
+    background-color: #01204E;
+  }
+
+  nav {
+    background-color: #028391;
+  }
+
+  .btn-light, .btn-light:hover, .btn-light:active, .btn-light:visited {
+    background-color: #F6DCAC !important;
+    font-family: 'Source Code Pro', monospace;
+    border-color: #F6DCAC;
+  }
+
+  .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+    background-color: #FEAE6F !important;
+    color: #01204E !important;
+    font-family: 'Source Code Pro', monospace;
+    border-color: #FEAE6F;
+  }
+
+  .btn-block, .btn-block:hover, .btn-block:active, .btn-block:visited {
+    background-color: #FEAE6F !important;
+    color: #01204E !important;
+    font-family: 'Source Code Pro', monospace;
+    border-color: #FEAE6F;
+  }
+
+  input, select, a, table, h3 {
+    font-family: 'Source Code Pro', monospace;
+  }
+
+  small {
+    font-family: 'Source Code Pro', monospace;
+    color: #F6DCAC;
+  }
+
+  table {
+    background-color: #01204E !important;
+    color: #F6DCAC;
+  }
+
+  td, th {
+    vertical-align: middle !important; 
+  }
+
+  h3 {
+    color: #F6DCAC;
   }
 
   .footer {
@@ -134,11 +181,11 @@
     {% block header %} {% endblock header %}
     
 </head>
-<body class="bg-light">
-    <nav class="navbar navbar-expand-md navbar-primary bg-primary">
+<body>
+    <nav class="navbar navbar-expand-md navbar-primary">
         <div class="container">
             <h1><a href="{% url 'index' %}" class="navbar-brand">
-            <strong style="color:white">GALVANIC</strong></a></h1>
+            <strong style="color:white">ISIFY</strong></a></h1>
             <div class="collapse navbar-collapse">
                 <a href="{% url 'index' %}" class="btn btn-outline-light mt-2 mx-1">HOME</a>
                 <a href="{% url 'all_songs' %}" class="btn btn-outline-light mt-2 mx-1">ALL SONGS</a>

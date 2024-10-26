@@ -54,6 +54,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
             ],
         },
+        'FOOTER': [BASE_DIR / "templates"]
     },
 ]
 
