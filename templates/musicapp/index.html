@@ -30,8 +30,10 @@
 <!-- Recent Song -->
 {% if recent_songs %}
 {% if not query_search %}
+<br>
+<br>
   <header class="section-heading">
-    <h5 class="section-title">RECENTLY PLAYED</h5>
+    <h5 class="section-title" style="color: #F6DCAC; font-family: 'Source Code Pro', monospace;">RECENTLY PLAYED</h5>
   </header>
 <hr>
 {% endif %}
@@ -57,13 +59,14 @@
 {% endif %}
 
 
+<br>
 
 <!-- All Songs -->
 {% if not query_search %}
 
   <header class="section-heading">
     <!-- <a href="{% url 'all_songs' %}" class="btn btn-primary float-right">View all</a> -->
-    <h5 class="section-title">ALL SONGS</h5>
+    <h5 class="section-title" style="color: #F6DCAC; font-family: 'Source Code Pro', monospace;">ALL SONGS</h5>
   </header>
 <hr>
 {% endif %}
@@ -88,12 +91,13 @@
     </div>
 <br>
 <br>
+<br>
 
 
-<!-- Hindi Songs -->
+<!-- TODO: Suggested Songs -->
 {% if not query_search %}
   <header class="section-heading">
-    <h5 class="section-title">HINDI SONGS</h5>
+    <h5 class="section-title" style="color: #F6DCAC; font-family: 'Source Code Pro', monospace;">MAYBE YOU LIKE THIS</h5>
   </header>
 <hr>
 {% endif %}
@@ -120,14 +124,14 @@
 <br>
 
 <!-- English Songs -->
-{% if not query_search %}
+<!-- {% if not query_search %}
   <header class="section-heading">
     <h5 class="section-title">ENGLISH SONGS</h5>
   </header>
 <hr>
-{% endif %}
+{% endif %} -->
 <!-- Song list -->
-<div class="row" style="margin-right: 65px;margin-left:-15px">
+<!-- <div class="row" style="margin-right: 65px;margin-left:-15px">
   {% if english_songs %}
   {% for song in english_songs %}
       <div class="col-md-2">
@@ -144,8 +148,8 @@
       {% if not query_search %}
       <a href="{% url 'english_songs' %}" class="btn btn-primary float-right" style="height: 135px;"><center style="margin-top: 45px;">View all <i class="fa fa-arrow-right" aria-hidden="true"></i></center></a>
       {% endif %}
-    </div>
-</div>
+    </div>-->
+</div> 
 <br>
 <br>
 <br>

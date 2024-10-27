@@ -334,3 +334,6 @@ reddit/media/
 !.envs/.local/
 
 .idea
+
+# test
+test.py

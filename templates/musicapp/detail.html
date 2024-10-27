@@ -38,10 +38,10 @@
                 </div>
                 <div class="details col-md-6">
                     <br>
-                    <h3 class="product-title">{{songs.name}}</h3>
-                    <h6>Album: {{songs.album}}</h6>
-                    <h6>Singer: {{songs.singer}}</h6>
-                    <h6>Release Year: {{songs.year}}</h6>
+                    <h3 class="product-title" style="color: #01204E; font-family: 'Source Code Pro', monospace;">{{songs.name}}</h3>
+                    <h6 style="color: #01204E; font-family: 'Source Code Pro', monospace;">Album: {{songs.album}}</h6>
+                    <h6 style="color: #01204E; font-family: 'Source Code Pro', monospace;">Singer: {{songs.singer}}</h6>
+                    <h6  style="color: #01204E; font-family: 'Source Code Pro', monospace;">Release Year: {{songs.year}}</h6>
                     <br>
                     <!-- <audio controls>
                         <source src="{{ songs.song_file.url }}" type="audio/mpeg">
@@ -49,14 +49,14 @@
 
                     <form method="post">
                         {% csrf_token %}
-                        <button style="float: left;" type="button" class="btn btn-primary" data-toggle="modal"
-                            data-target="#exampleModal" data-whatever="@mdo"><i class="fa fa-plus" aria-hidden="true"></i> Create New Playlist</button>
+                        <button style="float: left; background-color: #028391 !important; border-color: #028391; color: beige !important; width: 250px; height: 40px;" type="button" class="btn btn-primary" data-toggle="modal"
+                            data-target="#exampleModal" data-whatever="@mdo"><i class="fa fa-plus" aria-hidden="true" ></i> Create New Playlist</button>
                         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
                             aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">New Playlist</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel" style="color: #01204E; font-family: 'Source Code Pro', monospace;">New Playlist</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
@@ -64,7 +64,7 @@
                                     <div class="modal-body">
                                         <form>
                                             <div class="form-group">
-                                                <label for="recipient-name" class="col-form-label">Name</label>
+                                                <label for="recipient-name" class="col-form-label" style="color: #01204E; font-family: 'Source Code Pro', monospace;">Name</label>
                                                 <input type="text" class="form-control" id="recipient-name"
                                                     name="playlist">
                                             </div>
@@ -82,9 +82,9 @@
 
                     <form method="post">
                         {% csrf_token %}
-                        <select style="margin-left: 10px;width: 170px;" class="btn btn-success"
+                        <select style="margin-left: 10px;width: 170px; background-color: #F6DCAC !important; border-color: #F6DCAC; color: #01204E; width: 250px; height: 40px;" class="btn btn-success"
                             onChange="form.submit();" name="playlist">
-                            <option selected="selected" disabled style="color: black;">Add to Playlist</option>
+                            <option selected="selected" disabled style="color: black; ">Add to Playlist</option>
                             {% if playlists %}
                             {% for playlist in playlists %}
                             <option value={{playlist.playlist_name}}>{{playlist.playlist_name}}</option>
@@ -99,13 +99,13 @@
                         <span class="d-flex align-items-center mt-2 ml-2">
                             <!-- <i class="heart fa fa-heart my-auto"></i> -->
                             <button type="submit" name="rm-fav" class="btn btn-danger btn-block"
-                                style="width: 358px;margin-left:-8px;background-color: red;">Remove from Favourites</button>
+                                style="width: 510px;margin-left:-8px;height: 40px;">Remove from Favourites</button>
                         </span>
                         {% else %}
                         <span class="d-flex align-items-center mt-2 ml-2">
                             <!-- <i class="heart fa fa-heart my-auto"></i> -->
                             <button type="submit" name="add-fav" class="btn btn-danger btn-block"
-                                style="width: 358px;margin-left:-8px;background-color: red;"><i class="heart fa fa-heart-o my-auto" style="color:white"></i> Add to Favourites</button>
+                                style="width: 510px;margin-left:-8px; height: 40px;"><i class="heart fa fa-heart-o my-auto" style="color:white"></i> Add to Favourites</button>
 
                             <!-- <input type="submit" id="favbtn" class="btn btn-primary" name="add-fav" value="Add to Favourites"> -->
                         </span>
