@@ -21,7 +21,7 @@
 
 Link download:
 
-https://drive.google.com/drive/u/2/folders/1qwsaKrBBrTkqa9aZPzOsm_FaX2j-UA8b
+https://drive.google.com/file/d/1j0w66tdEcp5rz0mdqNcL0UMDIuetow8-/view?usp=sharing
 
 ```shell
 #Unzip downloaded data into media folder
