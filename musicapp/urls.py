@@ -16,7 +16,8 @@ urlpatterns = [
     path('play/<int:song_id>/', views.play_song, name='play_song'),
     path('play_song/<int:song_id>/', views.play_song_index, name='play_song_index'),
     path('play_recent_song/<int:song_id>/', views.play_recent_song, name='play_recent_song'),
-
+    path('play_next/<int:song_id>/', views.play_next_song, name='play_next'),
+    path('play_previous/<int:song_id>/', views.play_previous_song, name='play_previous'),
     
 
 ]

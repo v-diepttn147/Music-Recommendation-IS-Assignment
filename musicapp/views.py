@@ -2,8 +2,11 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import *
 from django.db.models import Q
 from django.contrib import messages
+from django.http import Http404
 from django.contrib.auth.decorators import login_required
 
+import random
+import pickle as pkl
 
 # Create your views here.
 def index(request):
@@ -29,11 +32,11 @@ def index(request):
             last_played_song = Song.objects.get(id=last_played_id)
         else:
             first_time = True
-            last_played_song = Song.objects.get(id=7)
+            last_played_song = Song.objects.get(id=17)
 
     else:
         first_time = True
-        last_played_song = Song.objects.get(id=7)
+        last_played_song = Song.objects.get(id=17)
 
     #Display all songs
     songs = Song.objects.all()
@@ -314,3 +317,83 @@ def favourite(request):
         messages.success(request, "Removed from favourite!")
     context = {'songs': songs}
     return render(request, 'musicapp/favourite.html', context=context)
+
+
+# @login_required(login_url='login')
+# def play_next_song(request, song_id):
+#     with open('pickles/music_data_clustered.pkl', 'rb') as f:
+#         music_data = pkl.load(f)
+#     mapping_song_cluster = dict(zip(music_data['song'], music_data['cluster']))
+
+#     all_songs = list(Song.objects.all().order_by('id'))
+    
+#     current_index = next((i for i, song in enumerate(all_songs) if song.id == song_id), None)
+    
+#     if current_index is not None and current_index + 1 < len(all_songs):
+#         next_song = all_songs[current_index + 1]
+#     else:
+#         next_song = all_songs[0]  # Loop back to the first song
+    
+#     data = Recent(song=next_song, user=request.user)
+#     data.save()
+#     return redirect('play_song', song_id=next_song.id)
+
+
+
+@login_required(login_url='login')
+def play_next_song(request, song_id):
+    # Load the clustered music data
+    try:
+        with open('pickles/music_data_clustered.pkl', 'rb') as f:
+            music_data = pkl.load(f)
+    except FileNotFoundError:
+        raise Http404("Clustered music data file not found.")
+    
+    # Create a mapping of song names to their clusters
+    mapping_song_cluster = dict(zip(music_data['song'], music_data['cluster']))
+
+    try:
+        # Get the current song and its name
+        current_song = Song.objects.get(id=song_id)
+        current_song_name = current_song.name
+    except Song.DoesNotExist:
+        raise Http404("Current song not found.")
+    
+    # Find the cluster ID for the current song
+    current_cluster = mapping_song_cluster.get(current_song_name, 0)
+    if current_cluster is None:
+        raise Http404("Cluster information for the current song not found.")
+    
+    # Find all songs in the same cluster
+    songs_in_cluster = [
+        song for song in Song.objects.all()
+        if mapping_song_cluster.get(song.name) == current_cluster
+    ]
+    
+    if not songs_in_cluster:
+        raise Http404("No songs found in the same cluster.")
+
+    # Randomly pick the next song from the same cluster
+    next_song = random.choice(songs_in_cluster)
+    
+    # Log the next song for the user
+    data = Recent(song=next_song, user=request.user)
+    data.save()
+    
+    # Redirect to the next song
+    return redirect('play_song', song_id=next_song.id)
+
+
+@login_required(login_url='login')
+def play_previous_song(request, song_id):
+    all_songs = list(Song.objects.all().order_by('id'))
+    current_index = next((i for i, song in enumerate(all_songs) if song.id == song_id), None)
+    
+    if current_index is not None and current_index > 0:
+        previous_song = all_songs[current_index - 1]
+    else:
+        previous_song = all_songs[-1]  # Loop back to the last song
+    
+    data = Recent(song=previous_song, user=request.user)
+    data.save()
+    return redirect('play_song', song_id=previous_song.id)

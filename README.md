@@ -17,6 +17,23 @@
 
 - Clone this repo to your local machine.
 
+#### Download New Dataset of Music
+
+Link download:
+
+https://drive.google.com/drive/u/2/folders/1qwsaKrBBrTkqa9aZPzOsm_FaX2j-UA8b
+
+```shell
+#Unzip downloaded data into media folder
+unzip new_song.zip -o ./media
+
+#Run script to import new_song to dataset
+cd notebook
+python import_new_songs.py
+# or use notebook to debug
+import_new_songs.ipynb
+```
+
 #### Run server locally
 
 ```shell
@@ -36,7 +53,8 @@ $ python manage.py runserver
 ⚡️ Add/Remove songs to/from playlist.\
 ⚡️ Add/Remove songs to/from favourites.\
 ⚡️ Scroll through recently played/viewed songs.\
-⚡️ Explore songs through your personalized playlist and favourites.
+⚡️ Explore songs through your personalized playlist and favourites.\
+⚡️⚡️⚡️ Recommend new music based on KNN and KMeans algorithms
 
 
 ---
