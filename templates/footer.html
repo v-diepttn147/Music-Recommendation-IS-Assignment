@@ -1,18 +1,24 @@
 <footer class="footer">
-    <div class="player" style="padding-left: 10px;padding-top:10px;background-color: #028391;">
-      <div class="left"><img src="{{last_played.song_img.url}}" height="90" width="90" style="border-radius: 10px 10px 10px 10px;"></div>
-      <div class="right">
-         <div class="top">
-            <a class="song" style="margin-left: 15px;color: white;">{{last_played.name}}</a>
-            <a class="artist" style="margin-left: 15px;color:white">{{last_played.album}}</a>
+    <div class="player" style="display: flex; align-items: center; padding: 20px; background-color: #1A1A1D; border-top: 3px solid #028391;">
+      <div class="left" style="margin-right: 15px;">
+          <img src="{{ last_played.song_img.url }}" alt="Album Art" height="80" width="80" style="border-radius: 10px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);">
+      </div>
+      <div class="center" style="flex-grow: 1; color: white; padding-top: 10px;">
+         <div class="song-details" style="display: flex; flex-direction: column; margin-top: 10px;">
+            <span class="song-title" style="font-weight: bold; font-size: 1.1em; color: #EAEAEA; margin-top: 5px;">{{ last_played.name }}</span>
+            <span class="song-artist" style="color: #B2B2B2; margin-top: 5px;">{{ last_played.album }}</span>
          </div>
-         <div class="bottom">
-          {% if first_time %}
-            <audio controls=""  name="media" style="margin-left: 20px;margin-bottom: 10px;width: 1230px;height:30px"><source src="{{last_played.song_file.url}}" type="audio/mpeg" ></audio>
-          {% else %}
-            <audio controls="" autoplay name="media" style="margin-left: 20px;margin-bottom: 10px;width: 1230px;height:30px"><source src="{{last_played.song_file.url}}" type="audio/mpeg" ></audio>
-          {% endif %}
-          </div>
+         <audio controls {% if not first_time %} autoplay {% endif %} name="media" style="width: 100%; margin-top: 15px; border-radius: 5px;">
+            <source src="{{ last_played.song_file.url }}" type="audio/mpeg">
+         </audio>
+      </div>
+      <div class="controls" style="display: flex; align-items: center; gap: 10px; margin-left: 15px;">
+          <a href="{% url 'play_previous' last_played.id %}" class="btn btn-outline-light" style="padding: 8px 12px; border-radius: 5px; text-decoration: none; color: #028391; background-color: #1F1F22; transition: background-color 0.3s;">
+              &#9664; Previous
+          </a>
+          <a href="{% url 'play_next' last_played.id %}" class="btn btn-outline-light" style="padding: 8px 12px; border-radius: 5px; text-decoration: none; color: #028391; background-color: #1F1F22; transition: background-color 0.3s;">
+              Next &#9654;
+          </a>
       </div>
     </div>
-  </footer>
+</footer>

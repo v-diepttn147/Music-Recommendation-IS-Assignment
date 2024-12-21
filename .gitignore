@@ -337,3 +337,7 @@ reddit/media/
 
 # test
 test.py
+test.ipynb
+
+media/*
+db.sqlite3
